@@ -35,7 +35,7 @@ preferences {
     input name: "receiverZones", type: "enum", title: "Zones", required: true, multiple: true, options: ["Main_Zone","Zone_2","Zone_3","Zone_4"]
     input name: "receiverInputs", type: "enum", title: "Inputs", required: true, multiple: true, options: 
     	["AUDIO1", "AUDIO2", "AV1", "AV2", "AV3", "AV4", "AV5", "AV6", "Bluetooth", "DOCK", "HDMI1", "HDMI2", "HDMI3", "HDMI4", 
-         "HDMI5", "iPod", "MULTI CH", "SIRIUS", "TUNER", "UAW", "V-AUX"]
+         "HDMI5", "iPod", "MULTI CH", "SIRIUS", "TUNER", "UAW", "V-AUX", "USB", "Pandora"]
   }
 }
 
@@ -94,13 +94,13 @@ private addChildDevices() {
       log.debug "Added zone device: ${deviceId}"
     } 
   }
-  settings.receiverInputs.each { 
-    def deviceId = 'yamaha_input|'+it
-    if (!getChildDevice(deviceId)) {
-      addChildDevice("doubleduece13", "Yamaha Source Switch", deviceId, hostHub.id, ["name": it, label: "Yamaha Input: "+it, source0: it, completedSetup: true])
-      log.debug "Added zone device: ${deviceId}"
-    } 
-  }
+//  settings.receiverInputs.each { 
+//    def deviceId = 'yamaha_input|Main_Zone|'+it
+//    if (!getChildDevice(deviceId)) {
+//      addChildDevice("doubleduece13", "Yamaha Source Switch", deviceId, hostHub.id, ["name": it, label: "Yamaha Input: "+it, "source0": it, "completedSetup": true])
+//      log.debug "Added zone device: ${deviceId}"
+//    } 
+//  }
 
   childDevices*.refresh()
 }
